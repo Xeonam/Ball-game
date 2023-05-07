@@ -1,17 +1,12 @@
 package View;
 
-import Controller.Json;
-import Model.Block;
+import Controller.MainApplication;
+import javafx.application.Application;
 
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        List<Block> blocks = Json.readMap();
-
-        for (Block block: blocks) {
-            System.out.println(block);
-        }
+        Application.launch(MainApplication.class, args);
     }
 }
