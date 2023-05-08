@@ -20,7 +20,7 @@ public class MenuController {
 
     @FXML
     void onPlayGame(ActionEvent event) throws IOException {
-        //TODO
+        new SceneSwitch(sceneMenu, "/map.fxml");
     }
 
     @FXML
