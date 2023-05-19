@@ -23,4 +23,28 @@ public class Map {
         }
         return block_array;
     }
+
+    public void moveUp() {
+        while (ball.getPosRow() != 0 && block_array[ball.getPosRow()][ball.getPosColumn()].getNorth() != 1) {
+            ball.setPosRow(ball.getPosRow() - 1);
+        }
+    }
+
+    public void moveLeft() {
+        while (ball.getPosColumn() != 0 && block_array[ball.getPosRow()][ball.getPosColumn()].getWest() != 1) {
+            ball.setPosColumn(ball.getPosColumn() - 1);
+        }
+    }
+
+    public void moveDown() {
+        while (ball.getPosRow() != 6 && block_array[ball.getPosRow()][ball.getPosColumn()].getSouth() != 1) {
+            ball.setPosRow(ball.getPosRow() + 1);
+        }
+    }
+
+    public void moveRight() {
+        while (ball.getPosColumn() != 6 && block_array[ball.getPosRow()][ball.getPosColumn()].getEast() != 1) {
+            ball.setPosColumn(ball.getPosColumn() + 1);
+        }
+    }
 }

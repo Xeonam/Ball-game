@@ -5,10 +5,13 @@ import javafx.fxml.FXML;
 import Model.Ball;
 import Model.Block;
 import Model.Map;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import org.tinylog.Logger;
 
 
 import java.io.IOException;
@@ -22,6 +25,9 @@ public class MapController {
 
     @FXML
     GridPane gridPane;
+
+    @FXML
+    Circle circleBall;
 
     private List<Block> blocks = Json.readMap();
 
@@ -45,6 +51,7 @@ public class MapController {
     @FXML
     private void initialize() {
         createBoard();
+        moveBall();
         
     }
 
@@ -86,6 +93,52 @@ public class MapController {
 
         square.setStyle("-fx-border-color: red; -fx-border-width: " + n + " " + e + " " + s + " " + w + ";");
         return square;
+    }
+
+    public void moveBall() {
+
+
+        gridPane.setOnKeyPressed(keyEvent -> {
+            var pos = map.block_array[ball.getPosRow()][ball.getPosColumn()];
+
+            if (keyEvent.getCode() == KeyCode.W && ball.getPosRow() != 0 && pos.getNorth() != 1) {
+                Logger.debug("Pressed " + keyEvent.getCode());
+                map.moveUp();
+
+            } else if (keyEvent.getCode() == KeyCode.W && (ball.getPosRow() == 0 || pos.getNorth() == 1)) {
+                Logger.error("Cannot move up. Wall encountered.");
+            }
+
+            if (keyEvent.getCode() == KeyCode.A && ball.getPosColumn() != 0 && pos.getWest() != 1) {
+                Logger.debug("Pressed " + keyEvent.getCode());
+                map.moveLeft();
+
+            } else if (keyEvent.getCode() == KeyCode.A && (ball.getPosColumn() == 0 || pos.getWest() == 1)) {
+                Logger.error("Cannot move left. Wall encountered.");
+            }
+
+            if (keyEvent.getCode() == KeyCode.S && ball.getPosRow() != 6 && pos.getSouth() != 1) {
+                Logger.debug("Pressed " + keyEvent.getCode());
+                map.moveDown();
+
+
+            } else if (keyEvent.getCode() == KeyCode.S && (ball.getPosRow() == 6 || pos.getSouth() == 1)) {
+                Logger.error("Cannot move down. Wall encountered.");
+            }
+
+            if (keyEvent.getCode() == KeyCode.D && ball.getPosColumn() != 6 && pos.getEast() != 1) {
+                Logger.debug("Pressed " + keyEvent.getCode());
+                map.moveRight();
+
+            } else if (keyEvent.getCode() == KeyCode.D && (ball.getPosColumn() == 6 || pos.getEast() == 1)) {
+                Logger.error("Cannot move right. Wall encountered.");
+            }
+
+            gridPane.getChildren().remove(circleBall);
+            gridPane.add(circleBall, ball.getPosColumn(), ball.getPosRow());
+
+
+        });
     }
 
 }

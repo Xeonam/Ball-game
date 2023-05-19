@@ -31,7 +31,7 @@
               <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="CENTER" vgrow="SOMETIMES" />
           </rowConstraints>
          <children>
-            <Circle fx:id="circleTry" fill="#f7460b" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Circle fx:id="circleBall" fill="#f7460b" radius="20.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Label fx:id="playerName" layoutX="88.0" layoutY="35.0" text="Label">
