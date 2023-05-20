@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import Model.Ball;
@@ -8,6 +9,7 @@ import Model.Map;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -22,10 +24,12 @@ public class MapController {
 
     @FXML
     AnchorPane sceneMap;
-
     @FXML
     GridPane gridPane;
-
+    @FXML
+    Label playerName;
+    @FXML
+    Label playerSteps;
     @FXML
     Circle circleBall;
 
@@ -52,7 +56,18 @@ public class MapController {
     private void initialize() {
         createBoard();
         moveBall();
+        printName();
+        printSteps();
         
+    }
+    private void printSteps() {
+        PlayerInfo.playerSteps.addListener((observable, oldValue, newValue) -> {
+            playerSteps.setText("Steps: " + newValue.intValue());
+        });
+    }
+
+    private void printName() {
+        playerName.setText("Player: " + PlayerInfo.name.getValue());
     }
 
     private void createBoard() {
@@ -96,7 +111,8 @@ public class MapController {
     }
 
     public void moveBall() {
-
+        map.playerInfo.setSteps(0);
+        PlayerInfo.victory.setValue(false);
 
         gridPane.setOnKeyPressed(keyEvent -> {
             var pos = map.block_array[ball.getPosRow()][ball.getPosColumn()];

@@ -1,6 +1,8 @@
 package Controller;
 
 
+import Model.PlayerInfo;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -20,6 +22,7 @@ public class MenuController {
 
     @FXML
     void onPlayGame(ActionEvent event) throws IOException {
+        PlayerInfo.name = new SimpleStringProperty(playerName.getText());
         new SceneSwitch(sceneMenu, "/map.fxml");
     }
 
