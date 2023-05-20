@@ -32,6 +32,8 @@ public class MapController {
     Label playerSteps;
     @FXML
     Circle circleBall;
+    @FXML
+    Label victoryLabel;
 
     private List<Block> blocks = Json.readMap();
 
@@ -58,8 +60,20 @@ public class MapController {
         moveBall();
         printName();
         printSteps();
-        
+        printVictory();
     }
+
+    private void printVictory() {
+        PlayerInfo.victory.addListener((observable, oldValue, newValue) -> {
+            if (PlayerInfo.victory.getValue()) {
+                victoryLabel.setText("You won!");
+            } else {
+                victoryLabel.setText("");
+            }
+
+        });
+    }
+
     private void printSteps() {
         PlayerInfo.playerSteps.addListener((observable, oldValue, newValue) -> {
             playerSteps.setText("Steps: " + newValue.intValue());
@@ -117,6 +131,11 @@ public class MapController {
         gridPane.setOnKeyPressed(keyEvent -> {
             var pos = map.block_array[ball.getPosRow()][ball.getPosColumn()];
 
+            if (keyEvent.getCode() == KeyCode.R) {
+                Logger.debug("Pressed " + keyEvent.getCode());
+                resetGame();
+            }
+
             if (keyEvent.getCode() == KeyCode.W && ball.getPosRow() != 0 && pos.getNorth() != 1) {
                 Logger.debug("Pressed " + keyEvent.getCode());
                 map.moveUp();
@@ -154,7 +173,26 @@ public class MapController {
             gridPane.add(circleBall, ball.getPosColumn(), ball.getPosRow());
 
 
+            if (map.victory()) {
+                Logger.debug("The player has reached the endpoint!");
+                PlayerInfo.victory.set(true);
+                gridPane.setOnKeyPressed(keyEvent1 -> {
+                    if (keyEvent1.getCode() == KeyCode.R) {
+                        resetGame();
+
+                    }
+                });
+            }
+
         });
+    }
+
+    private void resetGame() {
+        gridPane.getChildren().remove(circleBall);
+        ball.setPosRow(ball.getSTARTING_ROW_POSITION());
+        ball.setPosColumn(ball.getSTARTING_COLUMN_POSITION());
+        gridPane.add(circleBall, ball.getPosColumn(), ball.getPosRow());
+        moveBall();
     }
 
 }

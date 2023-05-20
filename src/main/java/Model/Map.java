@@ -52,4 +52,9 @@ public class Map {
             playerInfo.setSteps((playerInfo.getSteps().intValue() + 1));
         }
     }
+
+    public boolean victory() {
+        return (block_array[ball.getPosRow()][ball.getPosColumn()].isEndpoint());
+
+    }
 }
