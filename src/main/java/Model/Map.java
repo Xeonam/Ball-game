@@ -1,15 +1,24 @@
 package Model;
 
+import Controller.CreateLeaderboard;
 import Controller.Json;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.tinylog.Logger;
+
 public class Map {
     List<Block> blocks = Json.readMap();
     public Block[][] block_array = ListToBlock();
     private Ball ball;
     public PlayerInfo playerInfo = new PlayerInfo();
+    public PlayerDatabase playerDatabase = new PlayerDatabase();
 
     public Map(Ball ball) {
         this.ball = ball;
@@ -23,6 +32,28 @@ public class Map {
             }
         }
         return block_array;
+    }
+
+    public void playerToLeaderboard() throws IOException {
+        CreateLeaderboard.IsLeaderboardFileExists();
+        Logger.debug("Adding player to leaderboard");
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        Gson gson = new Gson();
+
+        FileReader fileReader = new FileReader("leaderboard.json");
+        List<PlayerDatabase> leaderBoard = gson.fromJson(fileReader, new TypeToken<List<PlayerDatabase>>() {
+        }.getType());
+
+        PlayerDatabase playerDatabase = new PlayerDatabase(playerInfo.getName().getValue(), playerInfo.getSteps().intValue(), now.format(formatter));
+        leaderBoard.add(playerDatabase);
+
+        String json = gson.toJson(leaderBoard);
+        FileWriter fileWriter = new FileWriter("leaderboard.json");
+        fileWriter.write(json);
+        fileWriter.close();
     }
 
     public void moveUp() {

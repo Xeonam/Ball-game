@@ -176,12 +176,20 @@ public class MapController {
             if (map.victory()) {
                 Logger.debug("The player has reached the endpoint!");
                 PlayerInfo.victory.set(true);
+                map.playerDatabase.setPlayerSteps(map.playerInfo.getSteps().intValue());
+                map.playerDatabase.setName(PlayerInfo.name.getValue());
+                try {
+                    map.playerToLeaderboard();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 gridPane.setOnKeyPressed(keyEvent1 -> {
                     if (keyEvent1.getCode() == KeyCode.R) {
                         resetGame();
 
                     }
                 });
+
             }
 
         });

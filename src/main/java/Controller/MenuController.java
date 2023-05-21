@@ -28,7 +28,8 @@ public class MenuController {
 
     @FXML
     void onLeaderboard(ActionEvent event) throws IOException {
-        //TODO
+        CreateLeaderboard.IsLeaderboardFileExists();
+        new SceneSwitch(sceneMenu, "/leaderboard.fxml");
     }
 
 }
