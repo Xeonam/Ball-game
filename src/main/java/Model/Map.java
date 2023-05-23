@@ -14,7 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import org.tinylog.Logger;
 
 public class Map {
-    List<Block> blocks = Json.readMap();
+    private List<Block> blocks = Json.readMap();
     public Block[][] block_array = ListToBlock();
     private Ball ball;
     public PlayerInfo playerInfo = new PlayerInfo();

@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class LeaderboardController implements javafx.fxml.Initializable{
 
     @FXML
-    AnchorPane sceneLeaderboard;
+    private AnchorPane sceneLeaderboard;
 
     @FXML
     private TableView<PlayerDatabase> leaderboard;
@@ -39,7 +39,7 @@ public class LeaderboardController implements javafx.fxml.Initializable{
     @FXML
     private TableColumn<PlayerDatabase, SimpleStringProperty> created;
 
-    ObservableList<PlayerDatabase> playerInfoList = getPlayerInfoList();
+    private ObservableList<PlayerDatabase> playerInfoList = getPlayerInfoList();
 
     public LeaderboardController() throws IOException {
     }

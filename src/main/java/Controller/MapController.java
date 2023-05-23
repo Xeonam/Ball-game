@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import Model.Ball;
 import Model.Block;
 import Model.Map;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -37,8 +38,8 @@ public class MapController {
 
     private List<Block> blocks = Json.readMap();
 
-    Ball ball = new Ball();
-    Map map = new Map(ball);
+    private Ball ball = new Ball();
+    private Map map = new Map(ball);
 
     public MapController() {
     }
@@ -46,11 +47,13 @@ public class MapController {
 
     @FXML
     private void onMenuButton(ActionEvent event) throws IOException {
+        Logger.debug("Clicked on: " + ((Button) event.getSource()).getText());
         new SceneSwitch(sceneMap, "/menu.fxml");
     }
 
     @FXML
     private void onLeaderboardButton(ActionEvent event) throws IOException {
+        Logger.debug("Clicked on: " + ((Button) event.getSource()).getText());
         new SceneSwitch(sceneMap, "/leaderboard.fxml");
     }
 

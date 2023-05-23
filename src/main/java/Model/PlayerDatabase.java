@@ -7,7 +7,6 @@ public class PlayerDatabase {
     public String name;
     public Integer playerSteps;
 
-
     public PlayerDatabase() {
     }
 

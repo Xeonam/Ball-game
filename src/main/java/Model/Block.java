@@ -36,14 +36,4 @@ public class Block {
         return endpoint;
     }
 
-    @Override
-    public String toString() {
-        return "Block{" +
-                "endpoint=" + endpoint +
-                ", north=" + north +
-                ", west=" + west +
-                ", south=" + south +
-                ", east=" + east +
-                '}';
-    }
 }
