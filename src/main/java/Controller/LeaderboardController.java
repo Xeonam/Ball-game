@@ -46,7 +46,6 @@ public class LeaderboardController implements javafx.fxml.Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //CreateLeaderboard.IsLeaderboardFileExists();
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         playerSteps.setCellValueFactory(new PropertyValueFactory<>("playerSteps"));
         created.setCellValueFactory(new PropertyValueFactory<>("created"));
@@ -65,10 +64,8 @@ public class LeaderboardController implements javafx.fxml.Initializable{
 
         Gson gson = new GsonBuilder().create();
 
-        // Read the JSON file into a 2D array of Blocks
         InputStream inputStream = new FileInputStream("leaderboard.json");
 
-        // Create a Reader from the input stream
         Reader reader = new InputStreamReader(inputStream);
         PlayerDatabase[] playerDatabaseArray = gson.fromJson(reader, PlayerDatabase[].class);
 

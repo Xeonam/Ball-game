@@ -13,17 +13,28 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.tinylog.Logger;
 
+/**
+ * A Map osztály reprezentálja a játékteret és a hozzá kapcsolódó műveleteket.
+ */
 public class Map {
     private List<Block> blocks = Json.readMap();
     public Block[][] block_array = ListToBlock();
     private Ball ball;
     public PlayerInfo playerInfo = new PlayerInfo();
-    public PlayerDatabase playerDatabase = new PlayerDatabase();
+    //public PlayerDatabase playerDatabase = new PlayerDatabase();
 
+    /**
+     * Map osztály konstruktora.
+     * @param ball a labdát reprezentáló objektum
+     */
     public Map(Ball ball) {
         this.ball = ball;
     }
 
+    /**
+     * Az adatokat tartalmazó listát átalakítja Block tömbbé.
+     * @return az átalakított Block tömb
+     */
     public Block[][] ListToBlock() {
         Block[][] block_array = new Block[7][7];
         for (int i = 0; i < 7; i++) {
@@ -34,6 +45,10 @@ public class Map {
         return block_array;
     }
 
+    /**
+     * Játékos hozzáadása a ranglistához.
+     * @throws IOException ha probléma merül fel a fájlkezeléssel kapcsolatban
+     */
     public void playerToLeaderboard() throws IOException {
         CreateLeaderboard.IsLeaderboardFileExists();
         Logger.debug("Adding player to leaderboard");
@@ -56,6 +71,9 @@ public class Map {
         fileWriter.close();
     }
 
+    /**
+     * A labdát felfelé mozgatja, amennyiben lehetséges.
+     */
     public void moveUp() {
         while (ball.getPosRow() != 0 && block_array[ball.getPosRow()][ball.getPosColumn()].getNorth() != 1) {
             ball.setPosRow(ball.getPosRow() - 1);
@@ -63,6 +81,9 @@ public class Map {
         }
     }
 
+    /**
+     * A labdát balra mozgatja, amennyiben lehetséges.
+     */
     public void moveLeft() {
         while (ball.getPosColumn() != 0 && block_array[ball.getPosRow()][ball.getPosColumn()].getWest() != 1) {
             ball.setPosColumn(ball.getPosColumn() - 1);
@@ -70,6 +91,10 @@ public class Map {
         }
     }
 
+
+    /**
+     * A labdát lefelé mozgatja, amennyiben lehetséges.
+     */
     public void moveDown() {
         while (ball.getPosRow() != 6 && block_array[ball.getPosRow()][ball.getPosColumn()].getSouth() != 1) {
             ball.setPosRow(ball.getPosRow() + 1);
@@ -77,6 +102,9 @@ public class Map {
         }
     }
 
+    /**
+     * A labdát jobbra mozgatja, amennyiben lehetséges.
+     */
     public void moveRight() {
         while (ball.getPosColumn() != 6 && block_array[ball.getPosRow()][ball.getPosColumn()].getEast() != 1) {
             ball.setPosColumn(ball.getPosColumn() + 1);
@@ -84,6 +112,9 @@ public class Map {
         }
     }
 
+    /**
+     * {@return true, ha a játékos nyert, egyébként false}
+     */
     public boolean victory() {
         return (block_array[ball.getPosRow()][ball.getPosColumn()].isEndpoint());
 

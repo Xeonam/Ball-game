@@ -10,18 +10,23 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * A `Json` osztály felelős a pálya JSON fájlból történő beolvasásáért.
+ */
 public class Json {
+    /**
+     * Beolvassa a térképet a JSON fájlból és visszaadja a blokkok listáját.
+     *
+     * @return a blokkok listája
+     */
     public static List<Block> readMap() {
 
         ArrayList<Block> blocksList = new ArrayList<>();
-        // Create Gson object
+
         Gson gson = new GsonBuilder().create();
 
-        // Read the JSON file into a 2D array of Blocks
         InputStream inputStream = ClassLoader.getSystemResourceAsStream("map.json");
 
-        // Create a Reader from the input stream
         Reader reader = new InputStreamReader(inputStream);
         Block[][] blocksArray = gson.fromJson(reader, Block[][].class);
 

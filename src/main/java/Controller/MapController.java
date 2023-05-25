@@ -179,8 +179,8 @@ public class MapController {
             if (map.victory()) {
                 Logger.debug("The player has reached the endpoint!");
                 PlayerInfo.victory.set(true);
-                map.playerDatabase.setPlayerSteps(map.playerInfo.getSteps().intValue());
-                map.playerDatabase.setName(PlayerInfo.name.getValue());
+                //map.playerDatabase.setPlayerSteps(map.playerInfo.getSteps().intValue());
+                //map.playerDatabase.setName(PlayerInfo.name.getValue());
                 try {
                     map.playerToLeaderboard();
                 } catch (IOException e) {
