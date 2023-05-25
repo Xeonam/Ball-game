@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.tinylog.Logger;
@@ -18,13 +19,19 @@ import org.tinylog.Logger;
  */
 public class Map {
     private List<Block> blocks = Json.readMap();
-    public Block[][] block_array = ListToBlock();
     private Ball ball;
+    /**
+     * Két dimenziós tömbbe tárolja a pályát.
+     */
+    public Block[][] block_array = ListToBlock();
+    /**
+     * A játékost reprezentáló mező.
+     */
     public PlayerInfo playerInfo = new PlayerInfo();
-    //public PlayerDatabase playerDatabase = new PlayerDatabase();
 
     /**
      * Map osztály konstruktora.
+     *
      * @param ball a labdát reprezentáló objektum
      */
     public Map(Ball ball) {
@@ -33,6 +40,7 @@ public class Map {
 
     /**
      * Az adatokat tartalmazó listát átalakítja Block tömbbé.
+     *
      * @return az átalakított Block tömb
      */
     public Block[][] ListToBlock() {
@@ -47,6 +55,7 @@ public class Map {
 
     /**
      * Játékos hozzáadása a ranglistához.
+     *
      * @throws IOException ha probléma merül fel a fájlkezeléssel kapcsolatban
      */
     public void playerToLeaderboard() throws IOException {
@@ -113,7 +122,9 @@ public class Map {
     }
 
     /**
-     * {@return true, ha a játékos nyert, egyébként false}
+     * Igaz, ha a játékos nyert, egyébként hamis.
+     *
+     * @return (block_array[ball.getPosRow ()][ball.getPosColumn()].isEndpoint())
      */
     public boolean victory() {
         return (block_array[ball.getPosRow()][ball.getPosColumn()].isEndpoint());

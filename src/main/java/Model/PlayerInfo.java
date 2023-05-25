@@ -9,9 +9,17 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class PlayerInfo {
 
-
+    /**
+     * A játékos neve.
+     */
     public static SimpleStringProperty name;
+    /**
+     * A játékos által megtett lépések száma.
+     */
     public static SimpleIntegerProperty playerSteps = new SimpleIntegerProperty(0);
+    /**
+     * A játékos nyert-e.
+     */
     public static SimpleBooleanProperty victory = new SimpleBooleanProperty(false);
 
     /**
@@ -21,14 +29,18 @@ public class PlayerInfo {
     }
 
     /**
-     * {@return A játékos által megtett lépések számát adja vissza.}
+     * A játékos által megtett lépések számát adja vissza.
+     *
+     * @return playerSteps
      */
     public SimpleIntegerProperty getSteps() {
         return playerSteps;
     }
 
     /**
-     * {@return A játékos nevét adja vissza.}
+     * A játékos nevét adja vissza.
+     *
+     * @return name
      */
     public SimpleStringProperty getName() {
         return name;

@@ -30,35 +30,45 @@ public class Block {
     }
 
     /**
-     * {@return az északi oldal értékét adja vissza}
+     *  Az északi oldal értékét adja vissza.
+     *
+     *  @return north
      */
     public int getNorth() {
         return north;
     }
 
     /**
-     * {@return a keleti oldal értékét adja vissza}
+     *  A keleti oldal értékét adja vissza.
+     *
+     *  @return east
      */
     public int getEast() {
         return east;
     }
 
     /**
-     * {@return a déli oldal értékét adja vissza}
+     *  A déli oldal értékét adja vissza.
+     *
+     *  @return south
      */
     public int getSouth() {
         return south;
     }
 
     /**
-     * {@return a nyugati oldal értékét adja vissza}
+     *  A nyugati oldal értékét adja vissza.
+     *
+     *  @return west
      */
     public int getWest() {
         return west;
     }
 
     /**
-     * {@return visszaadja, hogy a cella végpont-e vagy sem}
+     * Visszaadja, hogy a cella végpont-e vagy sem.
+     *
+     * @return endpoint
      */
     public boolean isEndpoint() {
         return endpoint;

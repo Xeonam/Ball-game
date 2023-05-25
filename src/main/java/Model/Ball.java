@@ -11,7 +11,9 @@ public class Ball {
     private int posColumn = STARTING_COLUMN_POSITION;
 
     /**
-     * {@return Az aktuális sor pozícióját adja vissza}
+     * Az aktuális sor pozícióját adja vissza.
+     *
+     * @return posRow
      */
     public int getPosRow() {
         return posRow;
@@ -27,7 +29,9 @@ public class Ball {
     }
 
     /**
-     * {@return Az aktuális oszlop pozícióját adja vissza}
+     * Az aktuális oszlop pozícióját adja vissza.
+     *
+     * @return posColumn
      */
     public int getPosColumn() {
         return posColumn;
@@ -43,14 +47,18 @@ public class Ball {
     }
 
     /**
-     * {@return A kezdő sor pozíciója}
+     *  A kezdő sor pozíciója.
+     *
+     * @return STARTING_ROW_POSITION
      */
     public int getSTARTING_ROW_POSITION() {
         return STARTING_ROW_POSITION;
     }
 
     /**
-     * {@return A kezdő oszlop pozíciója}
+     * A kezdő oszlop pozíciója.
+     *
+     * @return STARTING_COLUMN_POSITION
      */
     public int getSTARTING_COLUMN_POSITION() {
         return STARTING_COLUMN_POSITION;

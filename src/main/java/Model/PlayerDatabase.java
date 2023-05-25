@@ -6,9 +6,9 @@ package Model;
  */
 public class PlayerDatabase {
 
-    public String created;
-    public String name;
-    public Integer playerSteps;
+    private String created;
+    private String name;
+    private Integer playerSteps;
 
 //    public PlayerDatabase() {
 //    }
@@ -28,7 +28,9 @@ public class PlayerDatabase {
     }
 
     /**
-     * {@return A játékos nevét adja vissza.}
+     * A játékos nevét adja vissza.
+     *
+     * @return name
      */
     public String getName() {
         return name;
@@ -44,7 +46,9 @@ public class PlayerDatabase {
     }
 
     /**
-     * {@return Visszaadja a játékos által megtett lépések számát.}
+     * Visszaadja a játékos által megtett lépések számát.
+     *
+     * @return playerSteps
      */
     public Integer getPlayerSteps() {
         return playerSteps;
@@ -60,7 +64,9 @@ public class PlayerDatabase {
     }
 
     /**
-     * {@return Visszaadja a létrehozási dátumot.}
+     * Visszaadja a létrehozási dátumot.
+     *
+     * @return created
      */
     public String getCreated() {
         return created;
